@@ -61,7 +61,7 @@ function formatCellValue(value) {
   return String(value)
 }
 
-export default function ResourcePage({ title, endpoint }) {
+export default function ResourcePage({ title, endpoint, request = fetch }) {
   const [items, setItems] = useState([])
   const [pagination, setPagination] = useState(null)
   const [isLoading, setIsLoading] = useState(true)
@@ -77,7 +77,7 @@ export default function ResourcePage({ title, endpoint }) {
       setError('')
 
       try {
-        const response = await fetch(apiUrl, { signal: controller.signal })
+        const response = await request(apiUrl, { signal: controller.signal })
         if (!response.ok) {
           throw new Error(`Request failed with status ${response.status}`)
         }
