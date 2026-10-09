@@ -22,6 +22,8 @@ If `VITE_CODESPACE_NAME` is unset, the frontend safely falls back to:
 http://localhost:8000
 ```
 
+In local and Codespaces development (`vite dev`), the frontend calls relative `/api/...` paths and Vite proxies them to `http://localhost:8000`. This avoids cross-origin/tunnel-auth issues between ports.
+
 ## API routes used by the presentation tier
 
 - `/api/activities/`
